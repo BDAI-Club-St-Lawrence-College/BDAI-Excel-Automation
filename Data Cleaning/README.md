@@ -1,6 +1,6 @@
 ## Data Cleaning
 Here stores the _files, python scripts and online data sources_ for developing the __data cleaning feature__ of the project.   
-The CSV data files used for testing the codes are downloaded from Kaggle: https://www.kaggle.com/datasets/kaushiksuresh147/customer-segmentation for education purposes.
+The CSV data files used for testing the codes are downloaded from Kaggle: https://www.kaggle.com/datasets/kaushiksuresh147/customer-segmentation for education purposes. The 'train.csv' file is used to test the codes on missing values.
 
 # Current proposed Features
 1. import excel
