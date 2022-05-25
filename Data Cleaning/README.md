@@ -1,3 +1,8 @@
+## Data Cleaning
+# Here stores the files, python scripts and online data sources for developing the data cleaning feature of the project. 
+The CSV data files used for testing the codes are downloaded from Kaggle: https://www.kaggle.com/datasets/kaushiksuresh147/customer-segmentation for education purposes.
+
+_________________
 # BDAI-Automation
 
 This is a project started by the Big Data and Artificial Intelligence Club at the St. Lawrence College (Kingston Campus) in May 2022.
