@@ -6,7 +6,7 @@ The CSV data files used for testing the codes are downloaded from Kaggle: https:
 1. import excel
 2. pick up the numeric columns and non-numeric columns
 3. whether the numeric columns is normally distributed
-3. if ND, fill with mean, if not median
+3. if normally distributed, fill with mean; if not, fill with median
 4. search the conditional to fill categorical columns with mode or "not available".
 5. re-check the count of missing values == 0
 6. transfer categorical columns into numeric columns
