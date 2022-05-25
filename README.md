@@ -5,14 +5,13 @@ This is a project started by the Big Data and Artificial Intelligence Club at th
 The project aims to create a _python script_ for automation purposes in **cleaning, formating, and transforming** the __CSV or Excel files__ to be used directly and efficiently in __data visualization softwares__ like PowerBi.
 
 # Project Team Members:
-*Lead*: Xiuhao Shuai __
+*Lead*: Xiuhao Shuai  
+*Team*:  
+Donovan Bangs  
+Hennadii Korolevych  
+Yali Liu  
 
-*Team*: 
-Donovan Bangs __
-Hennadii Korolevych __
-Yali Liu __
-
-*Club President*: Maria Isabel D. Grau __
+*Club President*: Maria Isabel D. Grau  
 
 Thx for joining us!
 # BDAI Club linked-in page: https://www.linkedin.com/company/bdaic/
