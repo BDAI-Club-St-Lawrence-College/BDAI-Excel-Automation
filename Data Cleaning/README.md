@@ -2,6 +2,15 @@
 # Here stores the files, python scripts and online data sources for developing the data cleaning feature of the project. 
 The CSV data files used for testing the codes are downloaded from Kaggle: https://www.kaggle.com/datasets/kaushiksuresh147/customer-segmentation for education purposes.
 
+# Current proposed Features
+1. import excel
+2. pick up the numeric columns and non-numeric columns
+3. whether the numeric columns is normally distributed
+3. if ND, fill with mean, if not median
+4. search the conditional to fill categorical columns with mode or "not available".
+5. re-check the count of missing values == 0
+6. transfer categorical columns into numeric columns
+
 _________________
 # BDAI-Automation
 
