@@ -17,6 +17,6 @@ __Thx for joining us!
 # BDAI Club linked-in page: https://www.linkedin.com/company/bdaic/
 Location:  
 St Lawrence College
-100 Portsmouth Avenue, Kingston, Ontario K7L5A6, CA__
+100 Portsmouth Avenue, Kingston, Ontario K7L5A6, CA
 
 Time: May 25th, 2022
