@@ -6,10 +6,12 @@ The project aims to create a _python script_ for automation purposes in **cleani
 
 # Project Team Members:
 *Lead*: Xiuhao Shuai
+
 *Team*: 
 Donovan Bangs
 Hennadii Korolevych
 Yali Liu
+
 *Club President*: Maria Isabel D. Grau
 
 Thx for joining us!
