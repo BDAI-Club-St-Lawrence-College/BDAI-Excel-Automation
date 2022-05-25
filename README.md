@@ -13,10 +13,10 @@ Yali Liu
 
 *Club President*: Maria Isabel D. Grau  
 
-Thx for joining us!
+__Thx for joining us!
 # BDAI Club linked-in page: https://www.linkedin.com/company/bdaic/
 Location:  
 St Lawrence College
-100 Portsmouth Avenue, Kingston, Ontario K7L5A6, CA 
+100 Portsmouth Avenue, Kingston, Ontario K7L5A6, CA__
 
 Time: May 25th, 2022
