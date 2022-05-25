@@ -9,7 +9,7 @@ The project aims to create a _python script_ for automation purposes in **cleani
 *Team*:  
 Donovan Bangs  
 Hennadii Korolevych  
-Yali Liu
+Yali Liu  
 Isabel Grau  
 
 # Thx for joining us!
