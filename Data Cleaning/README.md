@@ -1,5 +1,5 @@
 ## Data Cleaning
-# Here stores the files, python scripts and online data sources for developing the data cleaning feature of the project. 
+Here stores the _files, python scripts and online data sources_ for developing the __data cleaning feature__ of the project. 
 The CSV data files used for testing the codes are downloaded from Kaggle: https://www.kaggle.com/datasets/kaushiksuresh147/customer-segmentation for education purposes.
 
 # Current proposed Features
