@@ -2,7 +2,7 @@
 Here stores the _files, python scripts and online data sources_ for developing the __data transfer feature__ of the project.   
 The CSV data files used for testing the codes are from:___ for education purposes.
 
-# Current proposed Features
+# Current proposed features
 1. Merge two CSV files based on an primary column with unique keys
 2. Merge multiple CSV files with different names
 _________________
