@@ -24,8 +24,7 @@ The project aims to create a _python script_ for automation purposes in **cleani
 Donovan Bangs  
 Hennadii Korolevych  
 Yali Liu  
-
-*Club President*: Maria Isabel D. Grau  
+Isabel Grau  
 
 # Thx for joining us!
 BDAI Club linked-in page: https://www.linkedin.com/company/bdaic/  
