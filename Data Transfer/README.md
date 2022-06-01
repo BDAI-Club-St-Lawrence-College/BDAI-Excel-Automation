@@ -1,16 +1,38 @@
 ## Data Transfer
-Here stores the _files, python scripts and online data sources_ for developing the __data transfer feature__ of the project.   
-The CSV data files used for testing the codes are from:___ for education purposes.
+Here stores the excel files, python scripts for developing the project's data merge/verify/transfer feature.   
+The CSV data files used for testing the codes were created by Xiuhao Shuai for club practice purposes.
 
 # Current proposed features
-1. Merge two CSV files based on an primary column with unique keys
-2. Merge multiple CSV files with different names
+1. Merge the excel file "Attendance" with "Contract"  
+2. Filter out the rows with mistaken inputs  
+ -- working "Date" in "Attendance.xlsx" should be within the range between "StartDate" and "EndDate" in "Contract.xlsx"  
+_________________
+Question want to solve:
+Create a consolidated excel record of how much the company should pay to who on what day. Also, extract any rows of inputs with errors/mistakes.
+
+# Data Structure  
+"Attendance.xlsx"   
+an excel file that records employee's attendance on their workday  
+ID - unique transaction ID  
+Name- Employee name  
+ContractType - 3 different types of contract: A, B, C  
+Date - the date when the employee was working  
+StartTime - working start time  
+EndTime - working end time  
+
+"Contract.xlsx"  
+an excel file that records each employee's contract and hourly pay for that specific contract type  
+Name - Employee name  
+Type - 3 different types of contract: A, B, C  
+StartDate - Contract start date  
+EndDate - Contract end date  
+HourlyPay - hourly pay to the employee  
 _________________
 # BDAI-Automation
 
-This is a project started by the Big Data and Artificial Intelligence Club at the St. Lawrence College (Kingston Campus) in May 2022.
+This project was started by the Big Data and Artificial Intelligence Club at St. Lawrence College (Kingston Campus) in May 2022.
 
-The project aims to create a _python script_ for automation purposes in **cleaning, formating, and transforming** the __CSV or Excel files__ to be used directly and efficiently in __data visualization softwares__ like PowerBi.
+The project aims to create a _python script_ for automation purposes in **cleaning, formatting and transforming** the __CSV or Excel files__ to be used directly and efficiently in __data visualization softwares__ like PowerBi.
 
 # Project Team Members:
 *Lead*: Xiuhao Shuai  
