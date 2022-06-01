@@ -4,11 +4,13 @@ The CSV data files used for testing the codes were created by Xiuhao Shuai for c
 
 # Current proposed features
 1. Merge the excel file "Attendance" with "Contract"  
+   -- based on the same Name + Contract Type  
 2. Filter out the rows with mistaken inputs  
  -- working "Date" in "Attendance.xlsx" should be within the range between "StartDate" and "EndDate" in "Contract.xlsx"  
+3. Calculate how much the company should pay for each month (based on the correct records)  
 _________________
-Question want to solve:
-Create a consolidated excel record of how much the company should pay to who on what day. Also, extract any rows of inputs with errors/mistakes.
+Question want to solve:  
+Create a consolidated excel record of how much the company should pay to who on what day. Also, extract any rows of inputs with errors/mistakes.  
 
 # Data Structure  
 "Attendance.xlsx"   
