@@ -18,7 +18,7 @@ Tk().withdraw()
 filepath = askopenfilename() # show an "Open" dialog box and return the path to the selected file
 print("File path: ", filepath,"\n")
 
-# Import Data - read file and save as dataframe
+# Import Data - read csv file and save as dataframe
 df = pd.read_csv(filepath)
 
 # save file name wih extension into variable
@@ -85,7 +85,9 @@ for i in catcols:
         df.drop(i, axis=1, inplace=True)
         print(i, "is dropped because it contains only one unique value")
 
-# if number of missing values is less than 5%, replace with mode, otherwise replace with NA
+# if number of missing values is less than 5%, replace with mode, otherwise replace with not_available
+print("\n If the number of missing values is less than 5%, replace with mode, otherwise replace with 'not_available': \n")
+
 for i in catcols:
     if df[i].isnull().sum()/df.shape[0] < 0.05:
         df[i].fillna(df[i].mode()[0], inplace=True)
