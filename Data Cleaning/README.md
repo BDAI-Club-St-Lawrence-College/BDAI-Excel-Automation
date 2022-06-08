@@ -3,7 +3,8 @@ Here stores the _files, python scripts and online data sources_ for developing t
 The CSV data files used for testing the codes are downloaded from Kaggle: https://www.kaggle.com/datasets/kaushiksuresh147/customer-segmentation for education purposes. The 'train.csv' file is used to test the codes on missing values.
 
 # Current proposed Features
-1. pick the csv file you want to read from explorer
+0: pick the csv file you want to read from explorer
+1: read csv file as a dataframe
 2. pick up the numeric columns and non-numeric columns
 3. whether the numeric columns is normally distributed
 3. if normally distributed, fill with mean; if not, fill with median
