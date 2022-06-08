@@ -4,7 +4,6 @@ from scipy.stats import shapiro
 import json
 import os
 from tkinter import Tk
-#from tkinter.filedialog import askdirectory
 from tkinter.filedialog import askopenfilename
 
 #Settings
@@ -15,12 +14,11 @@ alpha = 0.05 # variables for statistical Shapiro-Wilk test for normality, as
 # We don't want the GUI window of tkinter to be appearing on our screen
 Tk().withdraw()
   
-# Dialog box for selecting a folder.
-#file_path = askdirectory(title="Select a folder")
+# Dialog box for selecting the data file
 filepath = askopenfilename() # show an "Open" dialog box and return the path to the selected file
 print("File path: ", filepath,"\n")
 
-# Import Data - read file and create dataframe
+# Import Data - read file and save as dataframe
 df = pd.read_csv(filepath)
 
 # save file name wih extension into variable
@@ -36,8 +34,6 @@ print(df.head())
 print("Number of missing values:")
 print(df.isnull().sum(), "\n")
 
-# Replace special characters like $ into missing values ?
-#df = df.replace(r'\s+', np.nan, regex=True)
 
 # Create a list of Numerical columns (int and float (and boolean?))
 numcols = []
@@ -89,13 +85,16 @@ for i in catcols:
         df.drop(i, axis=1, inplace=True)
         print(i, "is dropped because it contains only one unique value")
 
-# if number of missing values is less than 5%, replace with mode, otherwise do nothing
+# if number of missing values is less than 5%, replace with mode, otherwise replace with NA
 for i in catcols:
     if df[i].isnull().sum()/df.shape[0] < 0.05:
         df[i].fillna(df[i].mode()[0], inplace=True)
         print(i, "has missing values filled with mode")
     else:
-        print(i, "has missing values more than 5%, do nothing")
+        # replace missing values with NA
+        df[i].fillna('not_available', inplace=True)
+        print(i, "has missing values more than 5%, replaced with 'not_available'")
+
 
 
 
@@ -125,8 +124,11 @@ category_dict = {}
 
 # Loop through columns and apply pd.factorize to each
 for i in catcols:
+    # Get the unique values in the column and save into dictionary
     category_dict[i] = dict(enumerate(df[i].unique()))
-    df[i] = pd.factorize(df[i])[0]
+    # Recode the values in the column
+    # With sort=True, the uniques will be sorted, and codes will be shuffled so that the relationship is the maintained.
+    df[i] = pd.factorize(df[i], sort=True)[0]
 
 ## Find a way to assign missing values to '0' ?
 ## then map all categorical to numeric not '0' ?
