@@ -47,16 +47,24 @@ for i in df.columns:
     if df[i].dtype != "object":
         numcols.append(i)
 
+# create a list of numerical columns with missing values
+numcols_missing = []
+for i in numcols:
+    if df[i].isnull().sum() > 0:
+        numcols_missing.append(i)
+
 # check if data volume <5000 or not
 if df.shape[0] > 5000:
     print("Data volume is too large, missing values will be replaced with mean or median automically:" , replaceType, "\n")
     # replace missing values with mean or median
     if replaceType == 'mean':
-        for i in numcols:
+        for i in numcols_missing:
                 df[i].fillna(df[i].mean(), inplace=True)
+                print("Replaced missing values in column: ", i, " with ", replaceType)
     elif replaceType == 'median':
-        for i in numcols:
+        for i in numcols_missing:
                 df[i].fillna(df[i].median(), inplace=True)
+                print("Replaced missing values in column: ", i, " with ", replaceType)
 else:
     print("Data volume is", df.shape[0],", missing values will be replaced with mean or median based on statistical Shapiro-Wilk test for normality", "\n")
 
@@ -69,7 +77,7 @@ else:
             return(True)
 
     # if the numerical column is normally distributed, replace missing values with mean, otherwise with median  
-    for i in numcols:
+    for i in numcols_missing:
         if shapiro_check(df[i], alpha) == False:
             print(i, "is not normally distributed, filled with median")
             df[i].fillna(df[i].median(), inplace=True)
@@ -91,10 +99,16 @@ for i in catcols:
         df.drop(i, axis=1, inplace=True)
         print(i, "is dropped because it contains only one unique value")
 
+# create a list of categorical columns with missing values
+catcols_missing = []
+for i in catcols:
+    if df[i].isnull().sum() > 0:
+        catcols_missing.append(i)
+
 # if number of missing values is less than 5%, replace with mode, otherwise replace with not_available
 print("\n If the number of missing values is less than 5%, replace with mode, otherwise replace with 'not_available': \n")
 
-for i in catcols:
+for i in catcols_missing:
     if df[i].isnull().sum()/df.shape[0] < 0.05:
         df[i].fillna(df[i].mode()[0], inplace=True)
         print(i, "has missing values filled with mode")
@@ -102,7 +116,6 @@ for i in catcols:
         # replace missing values with NA
         df[i].fillna('not_available', inplace=True)
         print(i, "has missing values more than 5%, replaced with 'not_available'")
-
 
 
 
@@ -127,7 +140,7 @@ for i in catcols:
 # Keep the key-value pairs in a dictionary
 """
 # check if there exists a disctionary file
-if os.path.isfile(filename + '_category_dict.json'):
+if os.path.isfile(os.path.join(os.path.dirname(filepath), filename + '_category_dict.json')):
     # if yes, read the dictionary file
     with open(filename + '_category_dict.json', 'r') as f:
         category_dict = json.load(f)
@@ -158,8 +171,8 @@ else:
     print("\nThe dictionary of categories: \n")
     print(json.dumps(category_dict, indent=1))
 
-    # save the dictionary into json file
-    with open(filename + '_category_dict.json', 'w') as f:
+    # save the dictionary into json file, to the same folder as the data file
+    with open(os.path.join(os.path.dirname(filepath), filename + '_category_dict.json'), 'w') as f:
         f.write(json.dumps(category_dict, indent=1))
     print("\nDictionary file: ", filename + '_category_dict.json' ,"is created")
 
@@ -174,6 +187,6 @@ else:
 # Review the recoded dataframe
 print("\nRecoded DataFrame:\n", df.head())
 
-# Save the recoded dataframe to a csv file with the name + "Recoded" as the original file
-df.to_csv(filename + "_Recoded.csv", index=False)
+# Save the recoded dataframe to a csv file with the name + "Recoded" as the original file, to the same folder as the data file
+df.to_csv(os.path.join(os.path.dirname(filepath), filename + "_Recoded.csv"), index=False)
 print("\nRecoded dataframe saved to", filename + "_Recoded.csv", "\n")
