@@ -41,7 +41,31 @@ print("Number of missing values:")
 print(df.isnull().sum(), "\n")
 
 
-# Create a list of Numerical columns (int and float (and boolean?))
+#### Create a list of boolean columns
+boolcols = []
+for i in df.columns:
+    if df[i].dtype == "bool":
+        boolcols.append(i)
+
+# create a list of boolean columns with missing values
+boolcols_missing = []
+for i in boolcols:
+    if df[i].isnull().sum() > 0:
+        boolcols_missing.append(i)
+
+# if number of missing values is less than 5%, replace with mode, otherwise replace with not_available
+for i in boolcols_missing:
+    print("\n for boolean columns, If the number of missing values is less than 5%, replace with mode, otherwise replace with 'not_available': \n")
+    if df[i].isnull().sum()/df.shape[0] < 0.05:
+        df[i].fillna(df[i].mode()[0], inplace=True)
+        print(i, "has missing values filled with mode")
+    else:
+        # replace missing values with NA
+        df[i].fillna('not_available', inplace=True)
+        print(i, "has missing values more than 5%, replaced with 'not_available'")
+
+
+#### Create a list of Numerical columns (int and float (and boolean?))
 numcols = []
 for i in df.columns:
     if df[i].dtype != "object":
@@ -106,7 +130,7 @@ for i in catcols:
         catcols_missing.append(i)
 
 # if number of missing values is less than 5%, replace with mode, otherwise replace with not_available
-print("\n If the number of missing values is less than 5%, replace with mode, otherwise replace with 'not_available': \n")
+print("\nFor categorical columns, if the number of missing values is less than 5%, replace with mode, otherwise replace with 'not_available': \n")
 
 for i in catcols_missing:
     if df[i].isnull().sum()/df.shape[0] < 0.05:
@@ -116,7 +140,6 @@ for i in catcols_missing:
         # replace missing values with NA
         df[i].fillna('not_available', inplace=True)
         print(i, "has missing values more than 5%, replaced with 'not_available'")
-
 
 
 ## 7. Transfer Categorical Columns to Numeric
@@ -139,10 +162,16 @@ for i in catcols_missing:
 # Using pd.factorize reassign all categorical values to a numeric
 # Keep the key-value pairs in a dictionary
 """
+# convert boolean columns to numeric
+for i in df.columns:
+    if df[i].dtype == "bool":
+        df[i] = df[i].astype(int)
+        print(i, "is converted from boolean to numeric")
+
 # check if there exists a disctionary file
 if os.path.isfile(os.path.join(os.path.dirname(filepath), filename + '_category_dict.json')):
     # if yes, read the dictionary file
-    with open(filename + '_category_dict.json', 'r') as f:
+    with open(os.path.join(os.path.dirname(filepath), filename + '_category_dict.json'), 'r') as f:
         category_dict = json.load(f)
     print("\nDictionary file is loaded: ", filename + '_category_dict.json', "\n")
 
