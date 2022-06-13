@@ -19,7 +19,13 @@ filepath = askopenfilename() # show an "Open" dialog box and return the path to 
 print("File path: ", filepath,"\n")
 
 # Import Data - read csv file and save as dataframe
-df = pd.read_csv(filepath)
+# if the files is csv format, use pd.read_csv()
+if filepath.endswith('.csv'):
+    df = pd.read_csv(filepath)
+    # check if the files is excel format, use pd.read_excel() to read the first tab of the excel file
+elif filepath.endswith('.xlsx'):
+    df = pd.read_excel(filepath, sheet_name=0)
+
 
 # save file name wih extension into variable
 filename = os.path.basename(filepath)
@@ -101,7 +107,7 @@ for i in catcols:
 
 
 ## 7. Transfer Categorical Columns to Numeric
-
+"""
 # pd.get_dummies()
 
 # https://stats.stackexchange.com/questions/411336/how-many-dummy-variables-should-we-include-in-our-multiple-linear-regression-ana
@@ -113,38 +119,60 @@ for i in catcols:
 # Following code to propose a method of recoding categorical values to numeric 
 # values with pd.factorize()
 
-
 # Using pd.factorize reassign all categorical values to a numeric
 # Keep the key-value pairs in a dictionary
 # Use the dictionary to replace the categorical values with the numeric values
 
 # Using pd.factorize reassign all categorical values to a numeric
 # Keep the key-value pairs in a dictionary
+"""
+# check if there exists a disctionary file
+if os.path.isfile(filename + '_category_dict.json'):
+    # if yes, read the dictionary file
+    with open(filename + '_category_dict.json', 'r') as f:
+        category_dict = json.load(f)
+    print("\nDictionary file is loaded: ", filename + '_category_dict.json', "\n")
 
-# Instantiate a dictionary to record the recoded values
-category_dict = {}
+    # replace categorical values with numeric values
+    for i in catcols:
+        df[i] = df[i].map(category_dict[i])
+        print(i, "is replaced with numeric values")
+else:
+    # if no, create a new dictionary
+    category_dict = {}
+    print("\nNew dictionary file will be created:\n")
 
-# Loop through columns and apply pd.factorize to each
-for i in catcols:
-    # Get the unique values in the column and save into dictionary
-    category_dict[i] = dict(enumerate(df[i].unique()))
-    # Recode the values in the column
-    # With sort=True, the uniques will be sorted, and codes will be shuffled so that the relationship is the maintained.
-    df[i] = pd.factorize(df[i], sort=True)[0]
+    # Loop through columns and apply pd.factorize to each
+    for i in catcols:
+        # Get the unique values in the column and save into dictionary, sorted by key
+        category_dict[i] = dict(enumerate(df[i].unique()))
+        # swap the key and value in the dictionary
+        category_dict[i] = {value:key for key,value in category_dict[i].items()}
 
+        # Recode the values in the column
+        # # With sort=True, the uniques will be sorted, and codes will be shuffled so that the relationship is the maintained.
+        df[i] = pd.factorize(df[i], sort=True)[0]
+        print(i, "is replaced with numeric values")
+    
+    # Print the dictionary of categories
+    print("\nThe dictionary of categories: \n")
+    print(json.dumps(category_dict, indent=1))
+
+    # save the dictionary into json file
+    with open(filename + '_category_dict.json', 'w') as f:
+        f.write(json.dumps(category_dict, indent=1))
+    print("\nDictionary file: ", filename + '_category_dict.json' ,"is created")
+
+"""        
 ## Find a way to assign missing values to '0' ?
 ## then map all categorical to numeric not '0' ?
 
-# Review the recoded dataframe
-print("\nRecoded DataFrame:\n", df.head())
-
-# Print the dictionary of categories
-print("\nThe dictionary of categories: \n")
-print(json.dumps(category_dict, indent=1))
-
 ## Next Step: How to look up dictionary of recoded values, after analysis ?
 ## Is it possible to add 1 to all factors AND the dictionary, to avoid 0s ?
-##      - would adding +1 be necessary or relevant?
+##      - would adding +1 be necessary or relevant?"""
+
+# Review the recoded dataframe
+print("\nRecoded DataFrame:\n", df.head())
 
 # Save the recoded dataframe to a csv file with the name + "Recoded" as the original file
 df.to_csv(filename + "_Recoded.csv", index=False)
