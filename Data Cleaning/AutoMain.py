@@ -34,8 +34,8 @@ filename = os.path.splitext(filename)[0]
 print("File name: ", filename,"\n")
 
 # print info of data
-print(df.info())
-print(df.head())
+print(df.info(),"\n")
+print(df.head(),"\n")
 # print number of missing values
 print("Number of missing values:")
 print(df.isnull().sum(), "\n")
